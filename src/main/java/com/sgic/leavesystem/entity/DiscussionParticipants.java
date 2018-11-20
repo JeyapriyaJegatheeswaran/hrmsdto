@@ -11,49 +11,48 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "discussion_participants")
 public class DiscussionParticipants implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1091327793224473441L;
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1091327793224473441L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employee_id")
-	User employee;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "participant_id")
+  User participant;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "discussion_id")
-	DiscussionSchedule discussionSchedule;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "discussion_id")
+  DiscussionSchedule discussionSchedule;
 
-	public Integer getId() {
-		return id;
-	}
+  public Integer getId() {
+    return id;
+  }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-	public User getEmployee() {
-		return employee;
-	}
+  public User getParticipant() {
+    return participant;
+  }
 
-	public void setEmployee(User employee) {
-		this.employee = employee;
-	}
+  public void setParticipant(User participant) {
+    this.participant = participant;
+  }
 
-	public DiscussionSchedule getDiscussionSchedule() {
-		return discussionSchedule;
-	}
+  public DiscussionSchedule getDiscussionSchedule() {
+    return discussionSchedule;
+  }
 
-	public void setDiscussionSchedule(DiscussionSchedule discussionSchedule) {
-		this.discussionSchedule = discussionSchedule;
-	}
+  public void setDiscussionSchedule(DiscussionSchedule discussionSchedule) {
+    this.discussionSchedule = discussionSchedule;
+  }
 
-	
 }

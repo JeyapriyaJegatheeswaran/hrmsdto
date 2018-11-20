@@ -2,7 +2,8 @@ package com.sgic.leavesystem.entity;
 
 import java.io.File;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,77 +15,80 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "termination_request")
 public class TerminationRequest implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4094788498255891587L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
-	ZonedDateTime planedLeavingDate;
-	String reason;
-	File resignationLetter;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "termination_type_id")
-	TerminationType terminationType;
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -4094788498255891587L;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  Integer id;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "employee_id")
-	User employee;
+  @Column(name = "planed_leaving_date")
+  Date planedLeavingDate;
 
-	public Integer getId() {
-		return id;
-	}
+  @Column(name = "reason")
+  String reason;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  @Column(name = "resignation_letter")
+  File resignationLetter;
 
-	public ZonedDateTime getPlanedLeavingDate() {
-		return planedLeavingDate;
-	}
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "termination_type_id")
+  TerminationType terminationType;
 
-	public void setPlanedLeavingDate(ZonedDateTime planedLeavingDate) {
-		this.planedLeavingDate = planedLeavingDate;
-	}
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "employee_id")
+  User employee;
 
-	public String getReason() {
-		return reason;
-	}
+  public Integer getId() {
+    return id;
+  }
 
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-	public File getResignationLetter() {
-		return resignationLetter;
-	}
+  public Date getPlanedLeavingDate() {
+    return planedLeavingDate;
+  }
 
-	public void setResignationLetter(File resignationLetter) {
-		this.resignationLetter = resignationLetter;
-	}
+  public void setPlanedLeavingDate(Date planedLeavingDate) {
+    this.planedLeavingDate = planedLeavingDate;
+  }
 
-	public TerminationType getTerminationType() {
-		return terminationType;
-	}
+  public String getReason() {
+    return reason;
+  }
 
-	public void setTerminationType(TerminationType terminationType) {
-		this.terminationType = terminationType;
-	}
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
 
-	public User getEmployee() {
-		return employee;
-	}
+  public File getResignationLetter() {
+    return resignationLetter;
+  }
 
-	public void setEmployee(User employee) {
-		this.employee = employee;
-	}
+  public void setResignationLetter(File resignationLetter) {
+    this.resignationLetter = resignationLetter;
+  }
 
-	
-	
+  public TerminationType getTerminationType() {
+    return terminationType;
+  }
+
+  public void setTerminationType(TerminationType terminationType) {
+    this.terminationType = terminationType;
+  }
+
+  public User getEmployee() {
+    return employee;
+  }
+
+  public void setEmployee(User employee) {
+    this.employee = employee;
+  }
 
 }
